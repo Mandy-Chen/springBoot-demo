@@ -28,4 +28,11 @@ public class EmployeeController {
     public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployees().stream().collect(Collectors.toList());
     }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteEmployee(@PathVariable Integer id) {
+        employeeService.deleteEmployee(id);
+        return "delete success!";
+    }
 }
