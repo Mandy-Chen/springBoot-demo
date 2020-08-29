@@ -8,6 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
@@ -27,5 +30,18 @@ public class EmployeeServiceTest {
         Employee actualEmployee = emplyeeService.add(emplyee);
         //then
         assertEquals(emplyee, actualEmployee);
+    }
+
+    @Test
+    void should_return_all_employees_when_get_all_employee_given_nothing() {
+        //given
+        Employee employeeFirst = new Employee(1, "mandy");
+        Employee employeeSecond = new Employee(2, "chen");
+        List<Employee> employees = Arrays.asList(employeeFirst, employeeSecond);
+        given(mockEmployeeRepository.findAll()).willReturn(employees);
+        //when
+        List<Employee> actualEmployees = emplyeeService.getAllEmployees();
+        //then
+        assertEquals(employees, actualEmployees);
     }
 }

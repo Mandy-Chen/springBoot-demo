@@ -5,6 +5,8 @@ import com.example.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -17,12 +19,13 @@ public class EmployeeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Employee addEmployee(@RequestBody Employee employee) {
+        System.out.println(employee.toString());
         return employeeService.add(employee);
     }
 
     @GetMapping
-    public String getAllEmployee() {
-        System.out.println("getAllEmployee");
-        return "sss";
+    public List<Employee> getAllEmployee() {
+//        todoService.getAllTodos().stream().map(TodoMapper::toTodoResponse).collect(Collectors.toList());
+        return employeeService.getAllEmployees();
     }
 }
