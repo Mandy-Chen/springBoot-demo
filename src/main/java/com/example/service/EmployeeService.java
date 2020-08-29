@@ -14,7 +14,6 @@ public class EmployeeService {
 
     public Employee add(Employee emplyee) {
         return employeeRepository.save(emplyee);
-
     }
 
     public List<Employee> getAllEmployees() {

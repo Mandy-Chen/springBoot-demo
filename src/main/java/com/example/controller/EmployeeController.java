@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/employee")
@@ -25,7 +26,6 @@ public class EmployeeController {
 
     @GetMapping
     public List<Employee> getAllEmployee() {
-//        todoService.getAllTodos().stream().map(TodoMapper::toTodoResponse).collect(Collectors.toList());
-        return employeeService.getAllEmployees();
+        return employeeService.getAllEmployees().stream().collect(Collectors.toList());
     }
 }
