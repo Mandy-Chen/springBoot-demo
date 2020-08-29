@@ -13,6 +13,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 public class EmployeeServiceTest {
@@ -43,5 +45,15 @@ public class EmployeeServiceTest {
         List<Employee> actualEmployees = emplyeeService.getAllEmployees();
         //then
         assertEquals(employees, actualEmployees);
+    }
+
+    @Test
+    void should_return_nothing_when_delete_employee_given_employee() {
+        //given
+
+        //when
+        emplyeeService.deleteEmployee(1);
+        //then
+        verify(mockEmployeeRepository, times(1)).deleteById(1);
     }
 }
