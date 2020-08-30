@@ -1,8 +1,5 @@
 package com.example.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -10,10 +7,13 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @Column(name = "department_id")
+    private Integer departmentId;
 
-    public Employee(Integer id, String name) {
+    public Employee(Integer id, String name, Integer departmentId) {
         this.id = id;
         this.name = name;
+        this.departmentId = departmentId;
     }
 
     public Employee() {

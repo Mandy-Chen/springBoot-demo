@@ -22,15 +22,15 @@ public class EmployeeServiceTest {
     @Mock
     EmployeeRepository mockEmployeeRepository;
     @InjectMocks
-    EmployeeService emplyeeService;
+    EmployeeService employeeService;
 
     @Test
     void should_return_employee_when_add_given_employee() {
         //given
-        Employee emplyee = new Employee(1, "mandy");
+        Employee emplyee = new Employee(1, "mandy", 1);
         //when
         given(mockEmployeeRepository.save(emplyee)).willReturn(emplyee);
-        Employee actualEmployee = emplyeeService.add(emplyee);
+        Employee actualEmployee = employeeService.add(emplyee);
         //then
         assertEquals(emplyee, actualEmployee);
     }
@@ -38,12 +38,12 @@ public class EmployeeServiceTest {
     @Test
     void should_return_all_employees_when_get_all_employee_given_nothing() {
         //given
-        Employee employeeFirst = new Employee(1, "mandy");
-        Employee employeeSecond = new Employee(2, "chen");
+        Employee employeeFirst = new Employee(1, "mandy", 1);
+        Employee employeeSecond = new Employee(2, "chen", 1);
         List<Employee> employees = Arrays.asList(employeeFirst, employeeSecond);
         given(mockEmployeeRepository.findAll()).willReturn(employees);
         //when
-        List<Employee> actualEmployees = emplyeeService.getAllEmployees();
+        List<Employee> actualEmployees = employeeService.getAllEmployees();
         //then
         assertEquals(employees, actualEmployees);
     }
@@ -53,7 +53,7 @@ public class EmployeeServiceTest {
         //given
 
         //when
-        emplyeeService.deleteEmployee(1);
+        employeeService.deleteEmployee(1);
         //then
         verify(mockEmployeeRepository, times(1)).deleteById(1);
     }
@@ -61,12 +61,12 @@ public class EmployeeServiceTest {
     @Test
     void should_return_employee_when_update_employee_given_employee() {
         //given
-        Employee employee = new Employee(1, "mandy");
-        Employee updatedEmployee = new Employee(1, "chen");
+        Employee employee = new Employee(1, "mandy", 1);
+        Employee updatedEmployee = new Employee(1, "chen", 1);
         given(mockEmployeeRepository.findById(1)).willReturn(Optional.of(employee));
         given(mockEmployeeRepository.save(employee)).willReturn(updatedEmployee);
         //when
-        Employee actualEmployee = emplyeeService.updateEmployee(1, employee);
+        Employee actualEmployee = employeeService.updateEmployee(1, employee);
         //then
         assertEquals(updatedEmployee, actualEmployee);
     }
