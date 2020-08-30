@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -55,5 +56,18 @@ public class EmployeeServiceTest {
         emplyeeService.deleteEmployee(1);
         //then
         verify(mockEmployeeRepository, times(1)).deleteById(1);
+    }
+
+    @Test
+    void should_return_employee_when_update_employee_given_employee() {
+        //given
+        Employee employee = new Employee(1, "mandy");
+        Employee updatedEmployee = new Employee(1, "chen");
+        given(mockEmployeeRepository.findById(1)).willReturn(Optional.of(employee));
+        given(mockEmployeeRepository.save(employee)).willReturn(updatedEmployee);
+        //when
+        Employee actualEmployee = emplyeeService.updateEmployee(1, employee);
+        //then
+        assertEquals(updatedEmployee, actualEmployee);
     }
 }
