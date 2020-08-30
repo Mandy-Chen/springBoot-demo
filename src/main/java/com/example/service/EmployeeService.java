@@ -24,7 +24,9 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public Employee updateEmployee(int i, Employee employee) {
-        return null;
+    public Employee updateEmployee(Integer id, Employee updatedemployee) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        employee.setName(updatedemployee.getName());
+        return employeeRepository.save(employee);
     }
 }
