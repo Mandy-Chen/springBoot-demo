@@ -20,7 +20,6 @@ public class EmployeeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Employee addEmployee(@RequestBody Employee employee) {
-        System.out.println(employee.toString());
         return employeeService.add(employee);
     }
 
@@ -29,7 +28,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees().stream().collect(Collectors.toList());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public String deleteEmployee(@PathVariable Integer id) {
         employeeService.deleteEmployee(id);
