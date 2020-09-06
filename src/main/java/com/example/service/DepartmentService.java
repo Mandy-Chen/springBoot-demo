@@ -23,6 +23,9 @@ public class DepartmentService {
     }
 
     public Department updateDepartment(Integer id, Department updateDepartment) {
-        return null;
+        Department department = departmentRepository.findById(id).orElse(null);
+        department.setName(updateDepartment.getName());
+        department.setEmployees(updateDepartment.getEmployees());
+        return departmentRepository.save(department);
     }
 }
