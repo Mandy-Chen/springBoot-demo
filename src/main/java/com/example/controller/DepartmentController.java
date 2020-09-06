@@ -31,4 +31,11 @@ public class DepartmentController {
     public Department updateDepartment(@PathVariable Integer id, @RequestBody Department department) {
         return departmentService.updateDepartment(id, department);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteDepartment(@PathVariable Integer id) {
+        departmentService.deleteDepartment(id);
+        return "delete success!";
+    }
 }
