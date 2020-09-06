@@ -33,4 +33,15 @@ public class DepartmentServiceTest {
         //then
         assertEquals(departments, actualDepartments);
     }
+
+    @Test
+    void should_return_department_when_add_department_given_department() {
+        //given
+        Department department = new Department(1, "ITA", null);
+        given(mockDepartmentRepository.save(department)).willReturn(department);
+        //when
+        Department actualDepartment = departmentService.addDepartment(department);
+        //then
+        assertEquals(department, actualDepartment);
+    }
 }
