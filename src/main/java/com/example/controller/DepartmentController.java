@@ -2,9 +2,7 @@ package com.example.controller;
 
 import com.example.model.Department;
 import com.example.service.DepartmentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +18,11 @@ public class DepartmentController {
     @GetMapping
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();
+    }
+
+    @PostMapping
+    public Department addDepartment(@RequestBody Department department) {
+        return departmentService.addDepartment(department);
     }
 
 }
