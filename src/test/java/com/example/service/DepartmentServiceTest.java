@@ -14,6 +14,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 public class DepartmentServiceTest {
@@ -57,5 +59,14 @@ public class DepartmentServiceTest {
         Department actualDepartment = departmentService.updateDepartment(1, updateDepartment);
         //then
         assertEquals(updateDepartment, actualDepartment);
+    }
+
+    @Test
+    void should_return_nothing_when_delete_department_given_department() {
+        //given
+        //when
+        departmentService.deleteDepartment(1);
+        //then
+        verify(mockDepartmentRepository, times(1)).deleteById(1);
     }
 }

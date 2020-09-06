@@ -28,4 +28,7 @@ public class DepartmentService {
         department.setEmployees(updateDepartment.getEmployees());
         return departmentRepository.save(department);
     }
+
+    public void deleteDepartment(Integer id) {
+    }
 }
