@@ -19,6 +19,6 @@ public class DepartmentService {
     }
 
     public Department addDepartment(Department department) {
-        return null;
+        return departmentRepository.save(department);
     }
 }
