@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -43,5 +44,18 @@ public class DepartmentServiceTest {
         Department actualDepartment = departmentService.addDepartment(department);
         //then
         assertEquals(department, actualDepartment);
+    }
+
+    @Test
+    void should_return_department_when_update_department_given_department() {
+        //given
+        Department department = new Department(1, "ITA", null);
+        Department updateDepartment = new Department(1, "部门A", null);
+        given(mockDepartmentRepository.findById(department.getId())).willReturn(Optional.of(department));
+        given(mockDepartmentRepository.save(department)).willReturn(updateDepartment);
+        //when
+        Department actualDepartment = departmentService.updateDepartment(1, updateDepartment);
+        //then
+        assertEquals(updateDepartment, actualDepartment);
     }
 }

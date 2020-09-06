@@ -21,4 +21,8 @@ public class DepartmentService {
     public Department addDepartment(Department department) {
         return departmentRepository.save(department);
     }
+
+    public Department updateDepartment(Integer id, Department updateDepartment) {
+        return null;
+    }
 }

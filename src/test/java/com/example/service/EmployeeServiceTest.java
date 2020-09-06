@@ -66,7 +66,7 @@ public class EmployeeServiceTest {
         given(mockEmployeeRepository.findById(1)).willReturn(Optional.of(employee));
         given(mockEmployeeRepository.save(employee)).willReturn(updatedEmployee);
         //when
-        Employee actualEmployee = employeeService.updateEmployee(1, employee);
+        Employee actualEmployee = employeeService.updateEmployee(1, updatedEmployee);
         //then
         assertEquals(updatedEmployee, actualEmployee);
     }
